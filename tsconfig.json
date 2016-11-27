@@ -2,13 +2,12 @@
   "compilerOptions": {
     "noImplicitAny": true,
     "module": "es2015",
-    "target": "es5",
+    "target": "ES6",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "declaration": true,
     "moduleResolution": "node",
     "types": [
-      "hammerjs",
       "jasmine",
       "node"
     ],
@@ -23,9 +22,5 @@
   "exclude": [
     "node_modules",
     "bundles"
-  ],
-  "angularCompilerOptions": {
-    "strictMetadataEmit": true,
-    "skipTemplateCodegen": true
-  }
+  ]
 }
