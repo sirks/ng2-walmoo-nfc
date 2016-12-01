@@ -13,7 +13,9 @@ export interface NewScanEvent {
 @Injectable()
 export class WalmooNFCService {
 
-  constructor(private window: Window) {}
+  constructor(private window: Window) {
+    this.setupApplet();
+  }
 
   public onNewScan: EventEmitter<NewScanEvent> = new EventEmitter<NewScanEvent>();
 
@@ -26,7 +28,11 @@ export class WalmooNFCService {
   }
 
   private setupApplet() {
-
+    this.window["java_nfc"]   = this.java_nfc;
+    this.window["java_mac"]   = this.java_mac;
+    this.window["java_qr"]    = this.java_qr;
+    this.window["java_talk"]  = this.java_talk;
+    this.window["java_ready"] = this.java_ready;
   }
 
   private java_nfc(uid) {
