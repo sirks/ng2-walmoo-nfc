@@ -24,4 +24,26 @@ export class WalmooNFCService {
   public tryWindow() {
     return this.window.closed;
   }
+
+  private setupApplet() {
+
+  }
+
+  private java_nfc(uid) {
+    console.log("Java-nfc says:" + uid);
+  }
+  private java_mac(mac) {
+    console.log("Java-mac says:" + mac);
+  }
+  private java_qr(qr) {
+    console.log("Java-qr says:" + qr);
+  }
+  private java_talk(code,msg) {
+    console.log("Java-talk says:" + code + " - " + msg);
+  }
+  private java_ready() {
+    console.log("Java is ready");
+  }
+
+
 }
