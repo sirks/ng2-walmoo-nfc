@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "noImplicitAny": true,
+    "noImplicitAny": false,
     "module": "es2015",
     "target": "ES6",
     "emitDecoratorMetadata": true,
@@ -16,8 +16,8 @@
   "files": [
     "index.ts",
     "ng2-walmoo-nfc.ts",
-    "./src/nfc.service.ts",
-    "tests/nfc.service.spec.ts"
+    "./src/walmoo-nfc.service.ts",
+    "tests/walmoo-nfc.service.spec.ts"
   ],
   "exclude": [
     "node_modules",
