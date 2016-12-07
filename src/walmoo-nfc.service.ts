@@ -1,21 +1,20 @@
 import { Injectable, EventEmitter } from "@angular/core";
-import "rxjs";
-import "rxjs/add/observable/of";
-import "rxjs/add/operator/share";
-import "rxjs/add/operator/map";
-import "rxjs/add/operator/merge";
-import "rxjs/add/operator/toArray";
 
-export interface NewScanEvent {
-  lala: string;
-}
-
+declare var window: Window;
 @Injectable()
 export class WalmooNFCService {
 
-  constructor(private window: Window) {
+  window;
+
+  constructor() {
+    this.window = window;
     this.setupApplet();
   }
+
+  /* TODO: should work with injection
+  constructor(private window: Window) {
+    this.setupApplet();
+  }*/
 
   public onNewScan: EventEmitter<NewScanEvent> = new EventEmitter<NewScanEvent>();
 
@@ -28,28 +27,33 @@ export class WalmooNFCService {
   }
 
   private setupApplet() {
-    this.window["java_nfc"]   = this.java_nfc;
-    this.window["java_mac"]   = this.java_mac;
-    this.window["java_qr"]    = this.java_qr;
-    this.window["java_talk"]  = this.java_talk;
-    this.window["java_ready"] = this.java_ready;
+    this.window = Object.assign(this.window, {
+      java_nfc: this.java_nfc,
+      java_mac: this.java_mac,
+      java_qr: this.java_qr,
+      java_talk: this.java_talk,
+      java_ready: this.java_ready
+    });
+
   }
 
-  private java_nfc(uid) {
+  private java_nfc(uid: any) {
     console.log("Java-nfc says:" + uid);
   }
-  private java_mac(mac) {
+  private java_mac(mac: any) {
     console.log("Java-mac says:" + mac);
   }
-  private java_qr(qr) {
+  private java_qr(qr: any) {
     console.log("Java-qr says:" + qr);
   }
-  private java_talk(code,msg) {
+  private java_talk(code: any, msg: any) {
     console.log("Java-talk says:" + code + " - " + msg);
   }
   private java_ready() {
     console.log("Java is ready");
   }
+}
 
-
+export interface NewScanEvent {
+  lala: string;
 }
