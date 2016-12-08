@@ -7,10 +7,11 @@ declare var window: Window;
 export class WalmooNFCService {
 
   private window;
-  private nfcScanEmitter = new Subject<NFCScan>();
+  private nfcScanEmitter;
 
   constructor() {
     this.window = window;
+    this.nfcScanEmitter = new Subject<NFCScan>();
     this.setupApplet();
   }
 
@@ -21,11 +22,11 @@ export class WalmooNFCService {
 
   private setupApplet() {
     this.window = Object.assign(this.window, {
-      java_nfc: this.java_nfc,
-      java_mac: this.java_mac,
-      java_qr: this.java_qr,
-      java_talk: this.java_talk,
-      java_ready: this.java_ready
+      java_nfc: this.java_nfc.bind(this),
+      java_mac: this.java_mac.bind(this),
+      java_qr: this.java_qr.bind(this),
+      java_talk: this.java_talk.bind(this),
+      java_ready: this.java_ready.bind(this)
     });
 
   }
