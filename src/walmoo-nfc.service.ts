@@ -1,10 +1,13 @@
-import { Injectable, EventEmitter } from "@angular/core";
+import { Injectable } from "@angular/core";
+import "rxjs";
+import { Subject, Observable } from "rxjs";
 
 declare var window: Window;
 @Injectable()
 export class WalmooNFCService {
 
-  window;
+  private window;
+  private nfcScanEmitter = new Subject<NFCScan>();
 
   constructor() {
     this.window = window;
@@ -15,16 +18,6 @@ export class WalmooNFCService {
   constructor(private window: Window) {
     this.setupApplet();
   }*/
-
-  public onNewScan: EventEmitter<NewScanEvent> = new EventEmitter<NewScanEvent>();
-
-  public getSmthCoolFromService(param: string) {
-    return param;
-  }
-
-  public tryWindow() {
-    return this.window.closed;
-  }
 
   private setupApplet() {
     this.window = Object.assign(this.window, {
@@ -38,7 +31,7 @@ export class WalmooNFCService {
   }
 
   private java_nfc(uid: any) {
-    console.log("Java-nfc says:" + uid);
+    this.nfcScanEmitter.next({uid: uid});
   }
   private java_mac(mac: any) {
     console.log("Java-mac says:" + mac);
@@ -52,8 +45,12 @@ export class WalmooNFCService {
   private java_ready() {
     console.log("Java is ready");
   }
+
+  public getNFCObservable(): Observable<NFCScan> {
+    return this.nfcScanEmitter.asObservable();
+  }
 }
 
-export interface NewScanEvent {
-  lala: string;
+export interface NFCScan {
+  uid: string;
 }

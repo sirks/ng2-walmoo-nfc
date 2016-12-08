@@ -2,9 +2,11 @@ import { Injector } from "@angular/core";
 import { XHRBackend, HttpModule } from "@angular/http";
 import { MockBackend, MockConnection } from "@angular/http/testing";
 import { getTestBed, TestBed } from "@angular/core/testing";
-import { WalmooNFCService, WalmooNFCModule } from "../ng2-walmoo-nfc";
+import { WalmooNFCService } from "../src/walmoo-nfc.service";
+import { WalmooNFCModule } from "../index";
 
-describe('WalmooNFCService', () => {
+
+describe("WalmooNFCService", () => {
   let injector: Injector;
   let backend: MockBackend;
   let nfc: WalmooNFCService;
@@ -31,24 +33,18 @@ describe('WalmooNFCService', () => {
     connection = undefined;
   });
 
-  it('is defined', () => {
+  it("is defined", () => {
     expect(WalmooNFCService).toBeDefined();
     expect(nfc).toBeDefined();
     expect(nfc instanceof WalmooNFCService).toBeTruthy();
   });
 
-  it('should be able to call methods', () => {
-    expect(nfc.getSmthCoolFromService("bebe")).toBeDefined();
-    expect(nfc.getSmthCoolFromService("bebe")).toEqual("bebe");
+  it("should be able to call methods", () => {
+    expect(nfc.getNFCObservable()).toBeDefined();
   });
 
   it('window should be injected', () => {
     // TODO: implement me
-  });
-
-  it('should be able to call window-related functions', () => {
-    expect(nfc.tryWindow()).toBeDefined();
-    expect(nfc.tryWindow()).toEqual(false);
   });
 
 });
