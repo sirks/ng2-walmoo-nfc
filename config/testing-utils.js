@@ -1,5 +1,5 @@
 /// <reference path="../node_modules/@types/jasmine/index.d.ts" />
-beforeEach(function () {
+beforeEach(() => {
     jasmine.addMatchers({
         toHaveText: function () {
             return {

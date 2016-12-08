@@ -13,4 +13,4 @@ export class WalmooNFCModule {
   }
 }
 
-export { WalmooNFCService as WalmooService } from "./src/walmoo-nfc.service";
+export { WalmooNFCService as WalmooService, NFCScan } from "./src/walmoo-nfc.service";
